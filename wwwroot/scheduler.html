@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scheduler</title>
+    <link  href="css/styles_scheduler.css"  rel="stylesheet" type="text/css" >
+  </head>
+  <body>
+
+        
+      
+      
+ <div id="vue-instance">
+ 
+     <ul>
+    <li v-for="item in stored" style="list-style-type:none">
+        <div class="box" v-if="item.on">
+        <div v-if="item.on">
+            <span class="input-group-addon" style="float:left; ">$</span>
+        <p v-if="item.static" style="color:black">   {{item.name}}</p>
+        <div v-if="item.edit">
+             <input type="text" v-model="item.name">
+        </div>
+        <br/>
+        <div class="row">
+        <p>DYNO SIZE</p>
+        <p v-if="item.static" style="color:black">{{item.dynoSize}}</p>
+        <select v-if="item.edit">
+            <option value="free" >Free</option>
+        </select>
+        <p>FREQUENCY</p>
+        <p v-if="item.static" style="color:black">{{item.frequency}}</p>
+        <select v-if="item.edit" v-model="item.frequency">
+            <option value="daily">Daily</option>
+            <option value="hourly">Hourly</option>
+            <option value="every 10 minutes">Every 10 minutes</option>
+        </select>
+        <p>LAST RUN</p>
+        <p style="color:black">{{item.lastRun}}</p>
+        <p>NEXT DUE</p>
+        <p v-if="item.static" style="color:black">{{item.nextDue}}</p>
+        <input v-if="item.edit" type="text" v-model="item.nextDue">
+        <br v-if="item.edit"/>
+        <br/>
+        </div>
+        <div class="row">
+        <button v-if="item.static" v-on:click="item.editb()">Edit</button>
+        <button v-if="item.static" v-on:click="item.remove()">Remove</button>
+        <button v-if="item.edit" v-on:click="item.save()">Save</button>
+        <button v-if="item.edit" v-on:click="item.cancel()">Cancel</button><br>
+        </div></div></div>
+    </li>
+  </ul>
+     
+     
+     
+     
+     
+     
+     <button v-if="showButton" v-on:click="toggle1" id="add-new" class="btn btn-lg btn-block 
+             btn-primary non-destructive">Add new job</button><br/><br/>  
+     
+             
+             
+             
+             
+     <div v-if="newForm" class = "box">
+         
+        <div class="row-top" >
+         
+           <span class="input-group-addon" style="float:left; ">$</span>
+  
+           <input type="text" v-model="name" class="form-control" style="float:left; width: 95%">
+                        <br/>             <br/>             <br/>
+        </div>
+  
+         <div class="row">
+
+             <br/>
+  <span> DYNO SIZE</span>
+  <select v-model="dynoSize">
+  <option value="free">Free</option>
+  </select><br><br>
+  <span>FREQUENCY</span>
+  <select v-model="frequency">
+  <option value="daily">Daily</option>
+  <option value="hourly">Hourly</option>
+  <option value="every 10 minutes">Every 10 minutes</option>
+  </select><br><br>
+  <p>LAST RUN    never</p><br>
+  <span>NEXT DUE</span> <input type="text" v-model="nextDue"><br><br>
+         </div>
+         <div class="row">
+             
+  <button v-on:click="save">Save</button>
+  <button v-on:click="toggle1">Cancel</button><br>
+     </div>
+     </div>
+    
+</div>
+
+<script src="http://cdn.jsdelivr.net/vue/1.0.16/vue.js"></script>
+
+<script>
+  // our VueJs instance bound to the div with an id of vue-instance
+  var vm = new Vue({
+      
+      task: function Task () {
+        this.name= '';
+        this.dynoSize='';
+        this.frequency = '';
+        this.lastRun = 'never';
+        this.nextDue = '';
+      },
+      
+    el: '#vue-instance',
+    data: {
+        showButton: true,
+        newForm: false,
+      name: '',
+      dynoSize: '',
+      frequency : '',
+      lastRun : 'never',
+      nextDue : '',
+      
+      stored: [
+      {name: 'task1', dynoSize: 'free', frequency: 'daily',lastRun: 'never',
+      nextDue: 'May 22 18:00 UTC', on:true,static: true, edit:false, 
+      save: function(){this.edit = !this.edit; this.static=!this.static;},editb: 
+              function(){this.edit = !this.edit; this.static=!this.static;
+          this.clone = {name: 'task1', dynoSize: 'free', frequency: 'daily',lastRun: 'never',
+      nextDue: 'May 22 18:00 UTC', on:true,static: true, edit:false, editb: 
+              function(){this.edit = !this.edit; this.static=!this.static;},
+      cancel:function(){this.edit = !this.edit; this.static=!this.static;
+      },
+      remove: function(){this.on = false;}};
+    },
+      cancel:function(){this.edit = !this.edit; this.static=!this.static;
+      this.name = this.clone.name; this.dynoSize = this.clone.dynoSize;
+  this.frequency = this.clone.frequency; this.nextDue = this.clone.nextDue;},
+      remove: function(){this.on = false;}},
+      {name: 'task2', dynoSize: 'free', frequency: 'hourly',lastRun: 'never',
+      nextDue: 'May 22 19:00 UTC', on:true,static: false, edit:true,
+      save: function(){this.edit = !this.edit; this.static=!this.static;}, editb: 
+              function(){this.edit = !this.edit; this.static=!this.static;
+          this.clone = {name: this.name, dynoSize: this.dynoSize, frequency: 
+                      this.frequency,lastRun: this.lastRun,
+      nextDue: this.nextDue};
+    }, 
+      cancel: function(){this.edit = !this.edit; this.static=!this.static;
+      this.name = this.clone.name; this.dynoSize = this.clone.dynoSize;
+  this.frequency = this.clone.frequency; this.nextDue = this.clone.nextDue;},
+      remove: function(){this.on = false;}}
+      
+    ]
+    },
+    methods: {
+      toggle1: function(){
+        this.newForm = !this.newForm;
+        this.showButton=!this.showButton;
+      },
+      save: function(){
+          this.showButton=!this.showButton;
+          var a = {name: this.name, dynoSize: this.dynoSize, frequency: 
+                      this.frequency, lastRun: this.lastRun,
+                      nextDue: this.nextDue, on:true,static: true, edit:false, 
+                      save: function(){this.edit = !this.edit; this.static=!this.static;},
+                      editb: function(){this.edit = !this.edit; this.static=!this.static;
+              this.clone = {name: this.name, dynoSize: this.dynoSize, frequency: 
+                      this.frequency,lastRun: this.lastRun,
+      nextDue: this.nextDue}}, 
+        cancel: function(){
+            this.showButton=!this.showButton;
+        this.edit = !this.edit; this.static=!this.static;
+      this.name = this.clone.name; this.dynoSize = this.clone.dynoSize;
+  this.frequency = this.clone.frequency; this.nextDue = this.clone.nextDue;},
+        remove: function(){this.on = false;}};
+          
+        this.stored.push(a);
+        
+        this.name=''; this.dynoSize = '';this.frequency='';this.lastRun='never';
+        this.nextDue='';
+        
+       
+        this.newForm = !this.newForm;
+      }
+    }
+  });
+</script>
+
+  </body>
+</html>
+

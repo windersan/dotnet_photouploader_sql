@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EMR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/scripts.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.js"></script>
+
+    <style>
+        .parallax {
+            /* The image used */
+            background-image: url("img/IMG1.jpg");
+            /* Set a specific height */
+            min-height: 700px;
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside id="menu" style="z-index:2;position:fixed;right:0px;width:22%;opacity:.9;background-color:black;padding:8px;display:none">
+
+        <h4 style="color: gray;font-weight:bold;" onmouseover="this.style.color = 'white'"
+            onmouseout="this.style.color = 'gray'">
+            HOME
+        </h4>
+        <h4 style="color: gray;font-weight:bold;" onmouseover="this.style.color = 'white'"
+            onmouseout="this.style.color = 'gray'">
+            PRESCRIPTIONS
+        </h4>
+
+        <h4 id="trainingGray" style="color: gray;font-weight:bold;" onmouseover="whitenTraining()">
+            SPECIALTIES <img id="grayArrow" src="img/down_arrow_gray.png" />
+        </h4>
+        <h4 onclick="toggleTraining()" id="trainingWhite" style="color: white;font-weight:bold;display:none"
+            onmouseout="grayTraining()">
+            SPECIALTIES <img id="whiteArrow" src="img/down_arrow_white.png" />
+        </h4>
+        <script>
+            function whitenTraining() {
+                var x = document.getElementById('trainingGray');
+                x.style.display = 'none';
+                var y = document.getElementById('trainingWhite');
+                y.style.display = 'block';
+            }
+            function grayTraining() {
+                var x = document.getElementById('trainingGray');
+                x.style.display = 'block';
+                var y = document.getElementById('trainingWhite');
+                y.style.display = 'none';
+            }
+        </script>
+
+        <div id="trainingList" style="opacity:1 ;z-index:3;background-color:black">
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Weight Loss</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Dermatology</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Cardiology</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Oncology</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Orthopedics</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Pediatrics</p>
+            <p style="color:gray" onmouseover="this.style.color = 'white'"
+               onmouseout="this.style.color = 'gray'">&nbsp; &nbsp; Dentist</p>
+        </div>
+        <script>
+            function toggleTraining() {
+                var x = document.getElementById('trainingList');
+                if (x.style.display != 'none') {
+                    x.style.display = 'none';
+                } else {
+                    x.style.display = 'block';
+                }
+            }
+
+        </script>
+
+        <h4 id="shopGray" style="color: gray;font-weight:bold;" onmouseover="whitenShop()">
+            INSURANCE <img id="grayArrow" src="img/down_arrow_gray.png" />
+        </h4>
+        <h4 id="shopWhite" style="color: white;font-weight:bold;display:none"
+            onmouseout="grayShop()">
+            INSURANCE <img id="whiteArrow" src="img/down_arrow_white.png" />
+        </h4>
+        <script>
+            function whitenShop() {
+                var x = document.getElementById('shopGray');
+                x.style.display = 'none';
+                var y = document.getElementById('shopWhite');
+                y.style.display = 'block';
+            }
+            function grayShop() {
+                var x = document.getElementById('shopGray');
+                x.style.display = 'block';
+                var y = document.getElementById('shopWhite');
+                y.style.display = 'none';
+            }
+        </script>
+
+        <h4 style="color: gray;font-weight:bold;" onmouseover="this.style.color = 'white'"
+            onmouseout="this.style.color = 'gray'">
+            VIDEOS <img id="grayArrow" src="img/down_arrow_gray.png" />
+        </h4>
+        <h4 style="color: gray;font-weight:bold;" onmouseover="this.style.color = 'white'"
+            onmouseout="this.style.color = 'gray'">
+            RESEARCH
+        </h4>
+        <button style="margin:10px; color:white">MAKE APPOINTMENT</button>
+    </aside>
+
+    <header>
+        <div style="padding:8px">
+
+          
+        </div>
+        <div id="menuClosed" style="text-align:right;">
+            <a href=http://main52.azurewebsites.net/Account/Login style="color:white">
+                LOGIN
+            </a>
+
+            <span style="padding-left:30px; ">
+                <a href=http://main52.azurewebsites.net/Account/Register style="color:white">
+                    REGISTER
+                </a>
+            </span>
+            <span style="padding-left:30px; " onclick="openMenu()">
+                MENU
+            </span>
+            <span style="padding-right:50px" onclick="openMenu()">
+                <img src="img/menu_icon.png" />
+            </span>
+        </div>
+
+        <div id="menuOpen" style="text-align:right; display:none">
+            <a href=http://main52.azurewebsites.net/Account/Login style="color:white;">
+                LOGIN
+            </a>
+            <span style="padding-left:30px;" onclick="closeMenu()">
+                MENU
+            </span>
+            <span style="padding-right:25vw" onclick="closeMenu()">
+                <img src="img/menu_icon.png" />
+            </span>
+            <script>
+                function closeMenu() {
+                    var x = document.getElementById('menu');
+                    x.style.display = 'none';
+                    x = document.getElementById('menuOpen');
+                    x.style.display = 'none';
+                    x = document.getElementById('menuClosed');
+                    x.style.display = 'block';
+                }
+                function openMenu() {
+                    var x = document.getElementById('menu');
+                    x.style.display = 'block';
+                    x = document.getElementById('menuOpen');
+                    x.style.display = 'block';
+                    x = document.getElementById('menuClosed');
+                    x.style.display = 'none';
+                }
+
+            </script>
+        </div>
+        <nav>
+            <div style="font-weight:bold; font-size:110%">
+                scripps medical research
+            </div>
+            <div style="text-align: right;">
+                <a href=overview.html style="color:gray;"
+                   onmouseover="this.style.color = 'black';this.style.fontWeight = 'bold';
+                               this.style.textDecoration = 'underline'"
+                   onmouseout="this.style.color = 'gray';
+                               this.style.fontWeight = 'normal';
+                               this.style.textDecoration = 'none'">DOCTORS</a>
+
+                <span style="padding-left:30px;">
+                    <a href=features.html style="color:gray;"
+                       onmouseover="this.style.color = 'black';
+                                   this.style.fontWeight = 'bold';this.style.textDecoration = 'underline'"
+                       onmouseout="this.style.color = 'gray';
+                                   this.style.fontWeight = 'normal';
+                                   this.style.textDecoration = 'none'">LOCATIONS</a>
+                </span>
+
+                <span style="padding-left:30px;">
+                    <a href=programs.html style="color:gray;"
+                       onmouseover="this.style.color = 'black';
+                                   this.style.fontWeight = 'bold';
+                                   this.style.textDecoration = 'underline'"
+                       onmouseout="this.style.color = 'gray';this.style.fontWeight = 'normal';
+                                   this.style.textDecoration = 'none'">PRESCRIPTIONS</a>
+                </span>
+
+                <span style="padding-left:30px; ">
+                    <a href=training.html style="color:gray;"
+                       onmouseover="this.style.color = 'black';
+                                   this.style.fontWeight = 'bold';this.style.textDecoration = 'underline'"
+                       onmouseout="this.style.color = 'gray';
+                                   this.style.fontWeight = 'normal';
+                                   this.style.textDecoration = 'none'">INSURANCE</a>
+                    <img style="padding-left:30px" src="img/search_icon.png" />
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="parallax">
+            <div class="hero-text" id="herotext">
+
+                <script src="~/js/jquery.js" type="text/javascript"></script>
+                <script type="text/javascript" typeof="text/javascript">
+
+                    $(function () {
+                    
+                        
+
+                       
+                        $('#herotext').fadeOut(8000).fadeIn(3000).fadeOut(8000).fadeIn(3000)
+                            .fadeOut(8000).fadeIn(3000).fadeOut(7000).fadeIn(3000).fadeOut(4000).fadeIn(6000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000)
+                            .fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000).fadeOut(5000).fadeIn(5000);
+                            
+                        
+
+                    });
+
+                </script>
+
+                <h2 style="text-align:left;margin:-5px">MEDICAL CARE</h2>
+                <h2 style="text-align:left;margin:-5px">HAS NEVER BEEN SO CARING</h2><br />
+                <p style="text-align:left;margin:-3px;">Welcome to the center of it all. Scripps</p>
+                <p style="text-align:left;margin:-3px;">presents you with hundreds of medical professionals</p>
+                <p style="text-align:left">designed to ensure your health and wellness.</p>
+
+
+            </div>
+        </div>
+
+
+
+        <div style="text-align: center;margin:20px;padding:40px;">
+            <h2>
+                MEDICAL
+            </h2></br>
+            <p style="text-align: center; margin-right:230px;margin-left:230px">
+                Scripps health
+            </p></br>
+
+            <div id="cards-all-rows" style="padding:60px;">
+
+                <script type="text/javascript" typeof="text/javascript">
+                    $(function () {
+
+
+                        window.onscroll = function () { myFunction() };
+
+                        function myFunction() {
+                            if (document.body.scrollTop > 350 || document.documentElement.scrollTop > 350) {
+                                $('#cards-all-rows').fadeOut(1000).fadeIn(5000);
+                            }
+                        }
+
+
+                            
+                        
+                    });
+                </script>
+
+
+                <div class="w3-container" style="margin-bottom:30%">
+                    <div class="w3-card-4" style="width:25%;float:left">
+
+
+                        <img src="img/xx.jpg" alt="card2" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card2" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card3" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card4" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-container" style="margin-bottom:60%">
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card5" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card6" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card7" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card8" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-container" style="margin-bottom:90%">
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card9" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card10" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card11" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" style="width:25%;float:left">
+                        <img src="img/xx.jpg" alt="card12" style="width:90%">
+                        <div class="w3-container w3-center">
+                            <p style="font-weight:bold">Blue Cross</p>
+                            <p style="margin:-1em;font-style:italic;font-size:95%">blue shield</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div style="text-align:center; clear:both;margin:5px;">
+                    <button style="text-align:center;margin:15px; color:white;  clear:both;">VIEW MORE</button>
+                </div>
+            </div>
+
+            <div style="background-color: black; text-align:center;color:white; width:100%;">
+                <blockquote style="border-left-color:black;text-align:left">
+                    <h3 style="padding:10px">
+                        I was faced with a lot of difficult decisions for my medical treatment, but the doctors
+                        here made me feel very comfortable and the nurses were so kind, I was able to make a full recovery.
+                    </h3>
+                    <footer style="color: #0099ff; font-style:italic">
+                        Graham Lambourne
+                    </footer>
+                </blockquote>
+            </div>
+
+
+            <div>
+                <h3 style="text-align: center; margin: 30px; ">
+                    Get the care you need at Scripps.
+                    <button style="margin:10px; color:white">MAKE APPOINTMENT</button>
+                </h3>
+            </div>
+
+    </main>
+
+    <footer>
+        <div>
+            <a href=blog.html style="color:gray">
+                PRESCRIPTIONS
+            </a> /
+            <a href=company.html style="color:gray">
+                COMPANY
+            </a> /
+            <a href=jobs.html style="color:gray">
+                JOBS
+            </a> /
+            <a href=support.html style="color:gray">
+                SUPPORT
+            </a> /
+            <a href=contact.html style="color:gray">
+                CONTACT
+            </a>
+
+            <a href="https://www.facebook.com/iHealth" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/iHealth" class="fa fa-twitter"></a>
+            <a href="https://plus.google.com/+iHealthtechnology" class="fa fa-google"></a>
+            <a href="https://www.pinterest.com/iHealth/" class="fa fa-pinterest"></a>
+            <a href="https://www.instagram.com/iHealth/" class="fa fa-instagram"></a>
+            <a href="https://www.youtube.com/user/iHealthLive" class="fa fa-youtube"></a>
+        </div>
+        <div style="text-align: right"> Copyright &copy Salemi,   Language: English</div>
+    </footer>
+</body>
+</html>

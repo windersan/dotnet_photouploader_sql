@@ -1,0 +1,14 @@
+﻿@model IList<Guid>
+
+
+@foreach (var item in Model)
+{
+    <img src="/Home/ViewImage/@item" />
+}
+
+
+
+<form action="/Home/UploadImage" enctype="multipart/form-data" method="post">
+    <input type="file" name="files" />
+    <button>post</button>
+</form>
